@@ -20,7 +20,7 @@ function selectSteve() {
   // Update Active Border
   steveImgEl.classList.add("active");
   alexImgEl.classList.remove("active");
-
+  fishBtnEl.addEventListener("click", fishOnce);
   // Update character selection Variable
   character = "Steve";
 }
@@ -32,4 +32,20 @@ function selectAlex() {
 
   // Update character selection Variable
   character = "Alex";
+}
+
+function fishOnce() {
+  // Test current character
+  if (character === "Steve") {
+    // Use Steve Probability Distribution for fishing
+    let randNum = Math.random();
+    console.log(randNum);
+    if (randNum < 0.7) console.log("Raw Cod");
+  } else if (randNum < 0.9) {
+    console.log("Raw Salmon");
+  } else if (randNum < 0.95) {
+    console.log("Tropical Fish");
+  } else {
+    console.log("Puffer Fish");
+  }
 }
