@@ -3,6 +3,7 @@
 //Variable to Store HTML Elements
 let steveImgEl = document.getElementById("steve-img");
 let alexImgEl = document.getElementById("alex-img");
+let villagerImgEl = document.getElementById("villager-img");
 let fishBtnEl = document.getElementById("fish-btn");
 let imgResultEl = document.getElementById("img-result");
 let numCodEl = document.getElementById("num-cod");
@@ -21,14 +22,24 @@ let numPuffer = 0;
 // Event Listeners
 steveImgEl.addEventListener("click", selectSteve);
 alexImgEl.addEventListener("click", selectAlex);
+villagerImgEl.addEventListener("click", selectVillager);
 fishBtnEl.addEventListener("click", fishOnce);
 plus5Btn.addEventListener("click", plus5);
 until200Btn.addEventListener("click", until200);
+
+function selectVillager() {
+  villagerImgEl.classList.add("active");
+  steveImgEl.classList.remove("active");
+  alexImgEl.classList.remove("active");
+  // Update character selection Variable
+  character = "Villager";
+}
 
 function selectSteve() {
   // Update Active Border
   steveImgEl.classList.add("active");
   alexImgEl.classList.remove("active");
+  villagerImgEl.classList.remove("active");
   fishBtnEl.addEventListener("click", fishOnce);
   // Update character selection Variable
   character = "Steve";
@@ -38,7 +49,7 @@ function selectAlex() {
   // Update Active Border
   steveImgEl.classList.remove("active");
   alexImgEl.classList.add("active");
-
+  villagerImgEl.classList.remove("active");
   // Update character selection Variable
   character = "Alex";
 }
@@ -67,7 +78,7 @@ function fishOnce() {
       imgResultEl.src = "img/Pufferfish.png";
       numPufferEl.innerHTML = numPuffer;
     }
-  } else {
+  } else if (character === "Alex") {
     // Use Alex Propability Distribution for Fishing
     let randNum = Math.random();
     console.log(randNum);
@@ -81,6 +92,27 @@ function fishOnce() {
       imgResultEl.src = "img/Raw-Salmon.png";
       numSalmonEl.innerHTML = numSalmon;
     } else if (randNum < 0.5) {
+      numTropical++;
+      imgResultEl.src = "img/Tropical-Fish.png";
+      numTropicalEl.innerHTML = numTropical;
+    } else {
+      numPuffer++;
+      imgResultEl.src = "img/Pufferfish.png";
+      numPufferEl.innerHTML = numPuffer;
+    }
+  } else {
+    let randNum = Math.random();
+    console.log(randNum);
+
+    if (randNum < 0.2) {
+      numCod++;
+      imgResultEl.src = "img/Raw-Cod.png";
+      numCodEl.innerHTML = numCod;
+    } else if (randNum < 0.6) {
+      numSalmon++;
+      imgResultEl.src = "img/Raw-Salmon.png";
+      numSalmonEl.innerHTML = numSalmon;
+    } else if (randNum < 0.7) {
       numTropical++;
       imgResultEl.src = "img/Tropical-Fish.png";
       numTropicalEl.innerHTML = numTropical;
