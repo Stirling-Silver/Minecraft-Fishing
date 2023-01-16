@@ -54,7 +54,7 @@ function selectAlex() {
   steveImgEl.classList.remove("active");
   alexImgEl.classList.add("active");
   villagerImgEl.classList.remove("active");
-  wanderingTraderImgEl.classList.remove("active ");
+  wanderingTraderImgEl.classList.remove("active");
   // Update character selection Variable
   character = "Alex";
 }
