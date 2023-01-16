@@ -4,6 +4,7 @@
 let steveImgEl = document.getElementById("steve-img");
 let alexImgEl = document.getElementById("alex-img");
 let villagerImgEl = document.getElementById("villager-img");
+let wanderingTraderImgEl = document.getElementById("wanderingTrader-img");
 let fishBtnEl = document.getElementById("fish-btn");
 let imgResultEl = document.getElementById("img-result");
 let numCodEl = document.getElementById("num-cod");
@@ -23,6 +24,7 @@ let numPuffer = 0;
 steveImgEl.addEventListener("click", selectSteve);
 alexImgEl.addEventListener("click", selectAlex);
 villagerImgEl.addEventListener("click", selectVillager);
+wanderingTraderImgEl.addEventListener("click", selectWanderingTrader);
 fishBtnEl.addEventListener("click", fishOnce);
 plus5Btn.addEventListener("click", plus5);
 until200Btn.addEventListener("click", until200);
@@ -31,6 +33,7 @@ function selectVillager() {
   villagerImgEl.classList.add("active");
   steveImgEl.classList.remove("active");
   alexImgEl.classList.remove("active");
+  wanderingTraderImgEl.classList.remove("active");
   // Update character selection Variable
   character = "Villager";
 }
@@ -40,6 +43,7 @@ function selectSteve() {
   steveImgEl.classList.add("active");
   alexImgEl.classList.remove("active");
   villagerImgEl.classList.remove("active");
+  wanderingTraderImgEl.classList.remove("active");
   fishBtnEl.addEventListener("click", fishOnce);
   // Update character selection Variable
   character = "Steve";
@@ -50,8 +54,19 @@ function selectAlex() {
   steveImgEl.classList.remove("active");
   alexImgEl.classList.add("active");
   villagerImgEl.classList.remove("active");
+  wanderingTraderImgEl.classList.remove("active ");
   // Update character selection Variable
   character = "Alex";
+}
+
+function selectWanderingTrader() {
+  // Update Active Border
+  steveImgEl.classList.remove("active");
+  alexImgEl.classList.remove("active");
+  villagerImgEl.classList.remove("active");
+  wanderingTraderImgEl.classList.add("active");
+  // Update character selection Variable
+  character = "WanderingTrader";
 }
 
 function fishOnce() {
@@ -100,7 +115,7 @@ function fishOnce() {
       imgResultEl.src = "img/Pufferfish.png";
       numPufferEl.innerHTML = numPuffer;
     }
-  } else {
+  } else if (character === "Villager") {
     let randNum = Math.random();
     console.log(randNum);
 
@@ -113,6 +128,28 @@ function fishOnce() {
       imgResultEl.src = "img/Raw-Salmon.png";
       numSalmonEl.innerHTML = numSalmon;
     } else if (randNum < 0.7) {
+      numTropical++;
+      imgResultEl.src = "img/Tropical-Fish.png";
+      numTropicalEl.innerHTML = numTropical;
+    } else {
+      numPuffer++;
+      imgResultEl.src = "img/Pufferfish.png";
+      numPufferEl.innerHTML = numPuffer;
+    }
+  } else {
+    // Use Steve Probability Distribution for fishing
+    let randNum = Math.random();
+    console.log(randNum);
+
+    if (randNum < 0.2) {
+      numCod++;
+      imgResultEl.src = "img/Raw-Cod.png";
+      numCodEl.innerHTML = numCod;
+    } else if (randNum < 0.3) {
+      numSalmon++;
+      imgResultEl.src = "img/Raw-Salmon.png";
+      numSalmonEl.innerHTML = numSalmon;
+    } else if (randNum < 0.8) {
       numTropical++;
       imgResultEl.src = "img/Tropical-Fish.png";
       numTropicalEl.innerHTML = numTropical;
